@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void Init_MinWindow(void);
 
 private slots:
     void on_pushButton_clicked();
@@ -25,6 +26,10 @@ private slots:
     void on_checkBox_stateChanged(int arg1);
 
     void on_buttonBox_clicked(QAbstractButton *button);
+
+    void on_pushButton_2_clicked();
+
+    void on_toolButton_clicked();
 
 private:
     Ui::MainWindow *ui;
