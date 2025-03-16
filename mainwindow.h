@@ -16,8 +16,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    int timer_id1; QTimer* timer;
     void Init_MinWindow(void);
-
+    void timerEvent(QTimerEvent* event);
 private slots:
     void on_pushButton_clicked();
 
@@ -30,6 +31,8 @@ private slots:
     void on_pushButton_2_clicked();
 
     void on_toolButton_clicked();
+
+    void timerTimeOut();
 
 private:
     Ui::MainWindow *ui;
