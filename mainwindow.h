@@ -16,9 +16,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    int timer_id1; QTimer* timer;
+
     void Init_MinWindow(void);
     void timerEvent(QTimerEvent* event);
+
+    int timer_id1;
+    QTimer* timer;
+    QTextEdit *debug_text;
 private slots:
     void on_pushButton_clicked();
 
@@ -34,7 +38,11 @@ private slots:
 
     void timerTimeOut();
 
+    void on_textEdit_2_textChanged();
+
 private:
     Ui::MainWindow *ui;
 };
+
+extern MainWindow *pw; //使用定义的MainWindow对象指针
 #endif // MAINWINDOW_H

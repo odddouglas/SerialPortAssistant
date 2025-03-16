@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QTimer>
 #include <QDateTime>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,17 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->Init_MinWindow();
 }
-void MainWindow::Init_MinWindow(void)
-{
-    this->timer_id1=0;
-    this->timer = new QTimer(this);
-    this->timer->setInterval(1000);
-    connect(this->timer, SIGNAL(timeout()),this,SLOT(timerTimeOut())); //连接信号到槽函数(额外手动连接）
 
-    this->ui->checkBox->setCheckState(Qt::Checked); //设置默认状态
-    this->ui->comboBox->addItem("COM1"); //添加串口选项
-    this->ui->comboBox->addItem("COM2");
-}
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -82,15 +73,19 @@ void MainWindow::on_buttonBox_clicked(QAbstractButton *button)
     switch (btnType)
     {
     case QDialogButtonBox::Cancel:
+        QMessageBox::information(this,"topic","取消");
         this->timer->stop();  //停止timer定时器
         killTimer(timer_id1); //杀死timer_id1定时器
         qDebug() << "timer1 stop";
 
         break;
     case QDialogButtonBox::Ok:
-        this->timer->start(); //启动定时器
-        this->timer_id1=startTimer(500);//启动timer_id1定时器
-        qDebug()<< "timer1 start";
+        if(QMessageBox::question(this,"提问","是否开启定时器",QMessageBox::Yes|QMessageBox::Cancel))
+        {
+            this->timer->start(); //启动定时器
+            this->timer_id1=startTimer(500);//启动timer_id1定时器
+            qDebug()<< "timer1 start";
+        }
         break;
     default:
         qDebug() << "timer_id:"<<timer_id1; //每次定时器的id都会随机生成
@@ -129,6 +124,11 @@ void MainWindow::on_pushButton_2_clicked()
     this->ui->textEdit->setReadOnly(true);
     this->ui->lineEdit->setReadOnly(true);
 
+}
+
+void MainWindow::on_textEdit_2_textChanged()
+{
+    this->ui->textEdit_2->moveCursor(QTextCursor::End);
 }
 
 
@@ -171,3 +171,52 @@ void MainWindow::timerTimeOut()
 {
     qDebug()<<"timerout";
 }
+
+//qInstallMessageHandler
+void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    (void)context;
+    QByteArray localMsg = msg.toLocal8Bit();
+    QString strMsg("");
+    switch(type)
+    {
+        case QtDebugMsg:
+            strMsg = QString("Debug");
+            break;
+        case QtInfoMsg:
+            strMsg = QString("Info");
+            break;
+        case QtWarningMsg:
+            strMsg = QString("Warning");
+            break;
+        case QtCriticalMsg:
+            strMsg = QString("Critical:");
+            break;
+        case QtFatalMsg:
+            strMsg = QString("Fatal:");
+            break;
+        default:
+            break;
+    }
+    QString strDateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    QString strMessage = QString("%1 %2 %3").arg(strDateTime,strMsg,localMsg);
+    pw->debug_text->insertPlainText(strMessage);
+}
+
+// 自定义初始化
+void MainWindow::Init_MinWindow(void)
+{
+    debug_text=this->ui->textEdit_2;
+
+    this->timer_id1=0;
+    this->timer = new QTimer(this);
+    this->timer->setInterval(1000);
+    connect(this->timer, SIGNAL(timeout()),this,SLOT(timerTimeOut())); //连接信号到槽函数(额外手动连接）
+    qInstallMessageHandler(myMessageOutput); //
+
+    this->ui->checkBox->setCheckState(Qt::Checked); //设置默认状态
+    this->ui->comboBox->addItem("COM1"); //添加串口选项
+    this->ui->comboBox->addItem("COM2");
+}
+
+
