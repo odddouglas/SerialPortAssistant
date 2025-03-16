@@ -1,12 +1,13 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "iostream"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->checkBox->setCheckState(Qt::Checked); //init the checkBox
+    ui->checkBox->setCheckState(Qt::Checked); //默认状态为勾选
 }
 
 MainWindow::~MainWindow()
@@ -55,6 +56,15 @@ void MainWindow::on_checkBox_stateChanged(int arg1)
             break;
         }
         default:break;
+    }
+}
+
+
+void MainWindow::on_buttonBox_clicked(QAbstractButton *button)
+{
+    if(button==this->ui->buttonBox->button(QDialogButtonBox::Cancel))
+    {
+        std::cout<<"cancel\n";
     }
 }
 
