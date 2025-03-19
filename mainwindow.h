@@ -3,6 +3,11 @@
 
 #include <QMainWindow>
 #include <ui_mainwindow.h>
+
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QValueAxis>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -18,6 +23,7 @@ public:
     ~MainWindow();
 
     void Init_MinWindow(void);
+    void createChart(void);
     void timerEvent(QTimerEvent* event);
 
     int timer_id1;

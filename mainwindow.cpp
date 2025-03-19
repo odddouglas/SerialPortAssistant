@@ -6,6 +6,9 @@
 #include <QTimer>
 #include <QDateTime>
 #include <QMessageBox>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QValueAxis>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)  // 调用父类 QMainWindow 的构造函数
@@ -13,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);  // 关联 UI 组件
     this->Init_MinWindow();  // 调用自定义初始化函数
+    this->createChart(); //初始化图像
 }
 
 
@@ -216,7 +220,39 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
     pw->debug_text->insertPlainText(strMessage);
 }
 
+void MainWindow::createChart(void)
+{
 
+    // 创建折线图数据序列
+    QLineSeries *series = new QLineSeries();
+    series->append(0, 6);
+    series->append(2, 4);
+    series->append(3, 8);
+    series->append(7, 4);
+    series->append(10, 5);
+
+    // 创建图表对象并添加数据序列
+    QChart *chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("简单折线图");
+
+    // 创建坐标轴并设置给图表
+    QValueAxis *axisX = new QValueAxis();
+    axisX->setTitleText("X 轴");
+    axisX->setRange(0, 10);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
+
+    QValueAxis *axisY = new QValueAxis();
+    axisY->setTitleText("Y 轴");
+    axisY->setRange(0, 10);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
+
+    // 直接将图表设置给提升后的graphicsView控件（此时它是QChartView类型）
+    ui->widget->setChart(chart);
+
+}
 // 自定义初始化
 void MainWindow::Init_MinWindow(void)
 {
