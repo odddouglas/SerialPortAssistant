@@ -53,7 +53,7 @@
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>60</y>
+     <y>50</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -65,43 +65,30 @@
     <string>FRESH</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_close_com">
+  <widget class="QPushButton" name="pushButton_onoff_com">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>120</y>
-     <width>71</width>
+     <x>370</x>
+     <y>110</y>
+     <width>171</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>CLOSE</string>
+    <string>OPEN COM</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_led">
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>120</y>
+     <y>80</y>
      <width>21</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
     <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_baud">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>90</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>BAUD</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_hex_rx">
@@ -147,7 +134,7 @@
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>300</y>
+     <y>310</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -160,7 +147,7 @@
    <property name="geometry">
     <rect>
      <x>460</x>
-     <y>300</y>
+     <y>310</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -173,7 +160,7 @@
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>330</y>
+     <y>340</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -186,7 +173,7 @@
    <property name="geometry">
     <rect>
      <x>460</x>
-     <y>330</y>
+     <y>340</y>
      <width>80</width>
      <height>24</height>
     </rect>
@@ -199,43 +186,23 @@
    <property name="geometry">
     <rect>
      <x>461</x>
-     <y>60</y>
-     <width>71</width>
+     <y>50</y>
+     <width>81</width>
      <height>24</height>
     </rect>
    </property>
    <item>
     <property name="text">
-     <string>COM1</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>COM2</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>COM3</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>COM4</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>COM5</string>
+     <string>COM</string>
     </property>
    </item>
   </widget>
   <widget class="QComboBox" name="comboBox_baud">
    <property name="geometry">
     <rect>
-     <x>461</x>
-     <y>90</y>
-     <width>71</width>
+     <x>460</x>
+     <y>80</y>
+     <width>81</width>
      <height>24</height>
     </rect>
    </property>
@@ -259,7 +226,7 @@
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>360</y>
+     <y>380</y>
      <width>171</width>
      <height>20</height>
     </rect>

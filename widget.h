@@ -18,8 +18,13 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+    void init_widget(void);
+private slots:
+    void on_pushButton_fresh_com_clicked();
+    void on_pushButton_onoff_com_clicked();
 
 private:
     Ui::Widget *ui;
+    QSerialPort my_Serial; //创建串口组件
 };
 #endif // WIDGET_H
