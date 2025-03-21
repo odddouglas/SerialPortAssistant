@@ -75,7 +75,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>OPEN COM</string>
+    <string>OPEN</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_led">

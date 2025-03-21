@@ -47,7 +47,7 @@ private slots:
 private:
     Ui::Widget *ui;
     QSerialPort my_Serial; //创建串口组件
-    int rx_num,tx_num; //收发的字节数
+    int rx_num=0,tx_num=0; //收发的字节数
     bool rx_mode=0,tx_mode=0;
 };
 #endif // WIDGET_H
